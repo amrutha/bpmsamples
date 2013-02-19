@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?oracleBPM version="11.1.1.6.0.15.53" fileRevision="20110706"?>
+<processDocumentation xmlns="http://xmlns.oracle.com/bpm/taskMetadataService/processDocumentation">
+    <component name="EJBJavaSampleProcess">
+        <topicDocumentations>
+            <topicDocumentation name="EJBJavaSampleProcess">
+                <descriptions>
+                    <description locale="en">EJBJavaSampleProcess</description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ABSTRACT_ACTIVITY5959818423760">
+                <labels>
+                    <label locale="en">UserTask</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="ABSTRACT_ACTIVITY5959868650538">
+                <labels>
+                    <label locale="en">InvokeMediator</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="START_EVENT5959818423638">
+                <labels>
+                    <label locale="en">Start</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="END_EVENT5959818423688">
+                <labels>
+                    <label locale="en">End</label>
+                </labels>
+            </topicDocumentation>
+            <topicDocumentation name="ABSTRACT_ACTIVITY5959954162029">
+                <labels>
+                    <label locale="en">InvokeSessionEJB</label>
+                </labels>
+                <descriptions>
+                    <description locale="en"></description>
+                </descriptions>
+            </topicDocumentation>
+            <topicDocumentation name="sf15"/>
+            <topicDocumentation name="sf16"/>
+            <topicDocumentation name="sf21"/>
+            <topicDocumentation name="sf30"/>
+        </topicDocumentations>
+    </component>
+</processDocumentation>

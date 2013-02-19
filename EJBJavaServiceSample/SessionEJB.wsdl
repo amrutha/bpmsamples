@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+     name="SessionEJB"
+     targetNamespace="http://service.mitm.soadev.com/"
+     xmlns:tns="http://service.mitm.soadev.com/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+     xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    >
+    <wsdl:types>
+        <xsd:schema xmlns:ns0="http://mitm.soadev.com/domain" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://mitm.soadev.com/domain">
+            <xsd:complexType name="EmployeeSDO">
+                <xsd:sequence>
+                    <xsd:element name="commissionPct" type="xsd:double" minOccurs="0"/>
+                    <xsd:element name="email" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="employeeId" type="xsd:long" minOccurs="0"/>
+                    <xsd:element name="firstName" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="hireDate" type="xsd:dateTime" minOccurs="0"/>
+                    <xsd:element name="lastName" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="phoneNumber" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="salary" type="xsd:double" minOccurs="0"/>
+                    <xsd:element name="status" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="job" type="ns0:JobSDO" minOccurs="0"/>
+                    <xsd:element name="department" type="ns0:DepartmentSDO" minOccurs="0"/>
+                    <xsd:element name="manager" type="ns0:EmployeeSDO" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="JobSDO">
+                <xsd:sequence>
+                    <xsd:element name="jobId" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="jobTitle" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="maxSalary" type="xsd:long" minOccurs="0"/>
+                    <xsd:element name="minSalary" type="xsd:long" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DepartmentSDO">
+                <xsd:sequence>
+                    <xsd:element name="departmentId" type="xsd:long" minOccurs="0"/>
+                    <xsd:element name="departmentName" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="locationId" type="xsd:long" minOccurs="0"/>
+                    <xsd:element name="manager" type="ns0:EmployeeSDO" minOccurs="0"/>
+                    <xsd:element name="employeeList" type="ns0:EmployeeSDO" minOccurs="0" maxOccurs="unbounded"
+                         nillable="true"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+        <xsd:schema xmlns:ns1="http://mitm.soadev.com/domain" xmlns:ns0="http://service.mitm.soadev.com/types"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.mitm.soadev.com/types">
+            <xsd:import namespace="http://mitm.soadev.com/domain"/>
+            <xsd:element name="jobSDO" type="ns1:JobSDO"/>
+            <xsd:element name="employeeSDO" type="ns1:EmployeeSDO"/>
+            <xsd:element name="departmentSDO" type="ns1:DepartmentSDO"/>
+        </xsd:schema>
+        <xsd:schema targetNamespace="http://service.mitm.soadev.com/" xmlns:tns="http://service.mitm.soadev.com/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://mitm.soadev.com/domain">
+            <xsd:import namespace="http://mitm.soadev.com/domain"/>
+            <xsd:complexType name="removeJob">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="ns1:JobSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="removeJob" type="tns:removeJob"/>
+            <xsd:complexType name="removeJobResponse">
+                <xsd:sequence/>
+            </xsd:complexType>
+            <xsd:element name="removeJobResponse" type="tns:removeJobResponse"/>
+            <xsd:complexType name="hello">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="hello" type="tns:hello"/>
+            <xsd:complexType name="helloResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="helloResponse" type="tns:helloResponse"/>
+            <xsd:complexType name="findJobById">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="findJobById" type="tns:findJobById"/>
+            <xsd:complexType name="findJobByIdResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="ns1:JobSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="findJobByIdResponse" type="tns:findJobByIdResponse"/>
+            <xsd:complexType name="queryByRange">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="xsd:string"/>
+                    <xsd:element name="arg1" type="xsd:int"/>
+                    <xsd:element name="arg2" type="xsd:int"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="queryByRange" type="tns:queryByRange"/>
+            <xsd:complexType name="queryByRangeResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="xsd:anyType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="queryByRangeResponse" type="tns:queryByRangeResponse"/>
+            <xsd:complexType name="mergeJob">
+                <xsd:sequence>
+                    <xsd:element name="job" type="ns1:JobSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="mergeJob" type="tns:mergeJob"/>
+            <xsd:complexType name="mergeJobResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="ns1:JobSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="mergeJobResponse" type="tns:mergeJobResponse"/>
+            <xsd:complexType name="mergeDepartment">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="ns1:DepartmentSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="mergeDepartment" type="tns:mergeDepartment"/>
+            <xsd:complexType name="mergeDepartmentResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="ns1:DepartmentSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="mergeDepartmentResponse" type="tns:mergeDepartmentResponse"/>
+            <xsd:complexType name="persistDepartment">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="ns1:DepartmentSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="persistDepartment" type="tns:persistDepartment"/>
+            <xsd:complexType name="persistDepartmentResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="ns1:DepartmentSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="persistDepartmentResponse" type="tns:persistDepartmentResponse"/>
+            <xsd:complexType name="getEmployeeFindAll">
+                <xsd:sequence/>
+            </xsd:complexType>
+            <xsd:element name="getEmployeeFindAll" type="tns:getEmployeeFindAll"/>
+            <xsd:complexType name="getEmployeeFindAllResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" minOccurs="0" maxOccurs="unbounded" type="ns1:EmployeeSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="getEmployeeFindAllResponse" type="tns:getEmployeeFindAllResponse"/>
+            <xsd:complexType name="removeEmployee">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="ns1:EmployeeSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="removeEmployee" type="tns:removeEmployee"/>
+            <xsd:complexType name="removeEmployeeResponse">
+                <xsd:sequence/>
+            </xsd:complexType>
+            <xsd:element name="removeEmployeeResponse" type="tns:removeEmployeeResponse"/>
+            <xsd:complexType name="persistJob">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="ns1:JobSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="persistJob" type="tns:persistJob"/>
+            <xsd:complexType name="persistJobResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="ns1:JobSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="persistJobResponse" type="tns:persistJobResponse"/>
+            <xsd:complexType name="removeDepartment">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="ns1:DepartmentSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="removeDepartment" type="tns:removeDepartment"/>
+            <xsd:complexType name="removeDepartmentResponse">
+                <xsd:sequence/>
+            </xsd:complexType>
+            <xsd:element name="removeDepartmentResponse" type="tns:removeDepartmentResponse"/>
+            <xsd:complexType name="findAllJobs">
+                <xsd:sequence/>
+            </xsd:complexType>
+            <xsd:element name="findAllJobs" type="tns:findAllJobs"/>
+            <xsd:complexType name="findAllJobsResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" minOccurs="0" maxOccurs="unbounded" type="ns1:JobSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="findAllJobsResponse" type="tns:findAllJobsResponse"/>
+            <xsd:complexType name="persistEmployee">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="ns1:EmployeeSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="persistEmployee" type="tns:persistEmployee"/>
+            <xsd:complexType name="persistEmployeeResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="ns1:EmployeeSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="persistEmployeeResponse" type="tns:persistEmployeeResponse"/>
+            <xsd:complexType name="getDepartmentFindAll">
+                <xsd:sequence/>
+            </xsd:complexType>
+            <xsd:element name="getDepartmentFindAll" type="tns:getDepartmentFindAll"/>
+            <xsd:complexType name="getDepartmentFindAllResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" minOccurs="0" maxOccurs="unbounded" type="ns1:DepartmentSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="getDepartmentFindAllResponse" type="tns:getDepartmentFindAllResponse"/>
+            <xsd:complexType name="mergeEmployee">
+                <xsd:sequence>
+                    <xsd:element name="arg0" type="ns1:EmployeeSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="mergeEmployee" type="tns:mergeEmployee"/>
+            <xsd:complexType name="mergeEmployeeResponse">
+                <xsd:sequence>
+                    <xsd:element name="return" type="ns1:EmployeeSDO"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="mergeEmployeeResponse" type="tns:mergeEmployeeResponse"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="removeJobInput">
+        <wsdl:part name="parameters" element="tns:removeJob"/>
+    </wsdl:message>
+    <wsdl:message name="removeJobOutput">
+        <wsdl:part name="parameters" element="tns:removeJobResponse"/>
+    </wsdl:message>
+    <wsdl:message name="helloInput">
+        <wsdl:part name="parameters" element="tns:hello"/>
+    </wsdl:message>
+    <wsdl:message name="helloOutput">
+        <wsdl:part name="parameters" element="tns:helloResponse"/>
+    </wsdl:message>
+    <wsdl:message name="findJobByIdInput">
+        <wsdl:part name="parameters" element="tns:findJobById"/>
+    </wsdl:message>
+    <wsdl:message name="findJobByIdOutput">
+        <wsdl:part name="parameters" element="tns:findJobByIdResponse"/>
+    </wsdl:message>
+    <wsdl:message name="queryByRangeInput">
+        <wsdl:part name="parameters" element="tns:queryByRange"/>
+    </wsdl:message>
+    <wsdl:message name="queryByRangeOutput">
+        <wsdl:part name="parameters" element="tns:queryByRangeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="mergeJobInput">
+        <wsdl:part name="parameters" element="tns:mergeJob"/>
+    </wsdl:message>
+    <wsdl:message name="mergeJobOutput">
+        <wsdl:part name="parameters" element="tns:mergeJobResponse"/>
+    </wsdl:message>
+    <wsdl:message name="mergeDepartmentInput">
+        <wsdl:part name="parameters" element="tns:mergeDepartment"/>
+    </wsdl:message>
+    <wsdl:message name="mergeDepartmentOutput">
+        <wsdl:part name="parameters" element="tns:mergeDepartmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="persistDepartmentInput">
+        <wsdl:part name="parameters" element="tns:persistDepartment"/>
+    </wsdl:message>
+    <wsdl:message name="persistDepartmentOutput">
+        <wsdl:part name="parameters" element="tns:persistDepartmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getEmployeeFindAllInput">
+        <wsdl:part name="parameters" element="tns:getEmployeeFindAll"/>
+    </wsdl:message>
+    <wsdl:message name="getEmployeeFindAllOutput">
+        <wsdl:part name="parameters" element="tns:getEmployeeFindAllResponse"/>
+    </wsdl:message>
+    <wsdl:message name="removeEmployeeInput">
+        <wsdl:part name="parameters" element="tns:removeEmployee"/>
+    </wsdl:message>
+    <wsdl:message name="removeEmployeeOutput">
+        <wsdl:part name="parameters" element="tns:removeEmployeeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="persistJobInput">
+        <wsdl:part name="parameters" element="tns:persistJob"/>
+    </wsdl:message>
+    <wsdl:message name="persistJobOutput">
+        <wsdl:part name="parameters" element="tns:persistJobResponse"/>
+    </wsdl:message>
+    <wsdl:message name="removeDepartmentInput">
+        <wsdl:part name="parameters" element="tns:removeDepartment"/>
+    </wsdl:message>
+    <wsdl:message name="removeDepartmentOutput">
+        <wsdl:part name="parameters" element="tns:removeDepartmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="findAllJobsInput">
+        <wsdl:part name="parameters" element="tns:findAllJobs"/>
+    </wsdl:message>
+    <wsdl:message name="findAllJobsOutput">
+        <wsdl:part name="parameters" element="tns:findAllJobsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="persistEmployeeInput">
+        <wsdl:part name="parameters" element="tns:persistEmployee"/>
+    </wsdl:message>
+    <wsdl:message name="persistEmployeeOutput">
+        <wsdl:part name="parameters" element="tns:persistEmployeeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getDepartmentFindAllInput">
+        <wsdl:part name="parameters" element="tns:getDepartmentFindAll"/>
+    </wsdl:message>
+    <wsdl:message name="getDepartmentFindAllOutput">
+        <wsdl:part name="parameters" element="tns:getDepartmentFindAllResponse"/>
+    </wsdl:message>
+    <wsdl:message name="mergeEmployeeInput">
+        <wsdl:part name="parameters" element="tns:mergeEmployee"/>
+    </wsdl:message>
+    <wsdl:message name="mergeEmployeeOutput">
+        <wsdl:part name="parameters" element="tns:mergeEmployeeResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="SessionEJB">
+        <wsdl:operation name="removeJob">
+            <wsdl:input message="tns:removeJobInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:removeJobOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="hello">
+            <wsdl:input message="tns:helloInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:helloOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="findJobById">
+            <wsdl:input message="tns:findJobByIdInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:findJobByIdOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="queryByRange">
+            <wsdl:input message="tns:queryByRangeInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:queryByRangeOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="mergeJob">
+            <wsdl:input message="tns:mergeJobInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:mergeJobOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="mergeDepartment">
+            <wsdl:input message="tns:mergeDepartmentInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:mergeDepartmentOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="persistDepartment">
+            <wsdl:input message="tns:persistDepartmentInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:persistDepartmentOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="getEmployeeFindAll">
+            <wsdl:input message="tns:getEmployeeFindAllInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:getEmployeeFindAllOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="removeEmployee">
+            <wsdl:input message="tns:removeEmployeeInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:removeEmployeeOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="persistJob">
+            <wsdl:input message="tns:persistJobInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:persistJobOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="removeDepartment">
+            <wsdl:input message="tns:removeDepartmentInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:removeDepartmentOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="findAllJobs">
+            <wsdl:input message="tns:findAllJobsInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:findAllJobsOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="persistEmployee">
+            <wsdl:input message="tns:persistEmployeeInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:persistEmployeeOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="getDepartmentFindAll">
+            <wsdl:input message="tns:getDepartmentFindAllInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:getDepartmentFindAllOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+        <wsdl:operation name="mergeEmployee">
+            <wsdl:input message="tns:mergeEmployeeInput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+            <wsdl:output message="tns:mergeEmployeeOutput" xmlns:ns1="http://www.w3.org/2006/05/addressing/wsdl"
+                 ns1:Action=""/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

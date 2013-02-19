@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>warning</severity>
+      <loc>/ns:composite/ns:service[@name='Mediator1_ep']</loc>
+      <line>24</line>
+      <col>65</col>
+      <file>C:\JDeveloper\samples\BPMSamples\SDOEJBAdapter\composite.xml</file>
+      <name>C:\JDeveloper\samples\BPMSamples\SDOEJBAdapter\composite.xml</name>
+      <fix/>
+      <msg>Service "Mediator1_ep" does not exist as wire source</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>Mediator1.mplan</file>
+      <name>Mediator1.mplan</name>
+      <fix/>
+      <msg>Assigning source "{http://xmlns.oracle.com/singleString}singleString" and target "{http://mitm.soadev.com/service/HRServiceBeanWS}jobId" of different QName which may generate non-valid xml as per the xsd in case of non-leaf node. If required verify manually</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>Mediator1.mplan</file>
+      <name>Mediator1.mplan</name>
+      <fix/>
+      <msg>Assigning source "{http://mitm.soadev.com/service/HRServiceBeanWS}result" and target "{http://mitm.soadev.com/domain}jobSDO" of different QName which may generate non-valid xml as per the xsd in case of non-leaf node. If required verify manually</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>Humantask1.task</file>
+      <name>Humantask1.task</name>
+      <fix/>
+      <msg>Task title not specified</msg>
+   </Fault>
+   <Fault>
+      <severity>warning</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>Humantask1.task</file>
+      <name>Humantask1.task</name>
+      <fix/>
+      <msg>Error assignee not specified</msg>
+   </Fault>
+</Faults>
